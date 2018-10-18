@@ -1,0 +1,4 @@
+id;area_id;url;name;emloyerID;salaryFrom;salaryTo;
+28325005;2;https://api.hh.ru/vacancies/28325005?host=career.ru;Помощник администратора;954932;10000;14000;
+28326469;2;https://api.hh.ru/vacancies/28326469?host=career.ru;Помощник менеджера по продажам;1268882;10000;12000;
+28326422;1847;https://api.hh.ru/vacancies/28326422?host=hh.ru;Менеджер интернет-магазина;2197519;15000;25000;
