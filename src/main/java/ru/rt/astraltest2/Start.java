@@ -14,37 +14,43 @@ import ru.rt.astraltest2.utils.PostgreSQL;
  */
 public class Start {
     public static void main(String[] args) {
-        if (args[0].equals("getData")){
-            if (args.length==2){
-                Quests.getInstance().getData(args[1]);
-                PostgreSQL.getInstance().shutdown();
-            }
-            else
-                throwHelpMessage();
-        }else
-            if (args[0].equals("showData")){
-                Quests.getInstance().showData();
+        try {
+            if (args[0].equals("getData")){
+                if (args.length==2){
+                    Quests.getInstance().getData(args[1]);
+                    PostgreSQL.getInstance().shutdown();
+                }
+                else
+                    throwHelpMessage();
             }else
-                if (args[0].equals("saveData")){
-                    Quests.getInstance().saveData();
+                if (args[0].equals("showData")){
+                    Quests.getInstance().showData();
                 }else
-                    if (args[0].equals("showRange")){
-                        if (args.length==3){
-                            long from=-1;
-                            long to=-1;
-                            try {
-                                from=Long.parseLong(args[1]);
-                                to=Long.parseLong(args[2]);
-                            } catch (Exception e) {
-                                throwHelpMessage();
-                            }
-                            if ((from!=-1)&&(to!=-1))
-                                    Quests.getInstance().showRange(from, to);
-                        }
-                        else
-                            throwHelpMessage();
+                    if (args[0].equals("saveData")){
+                        Quests.getInstance().saveData();
                     }else
-                        throwHelpMessage();
+                        if (args[0].equals("showRange")){
+                            if (args.length==3){
+                                long from=-1;
+                                long to=-1;
+                                try {
+                                    from=Long.parseLong(args[1]);
+                                    to=Long.parseLong(args[2]);
+                                } catch (Exception e) {
+                                    throwHelpMessage();
+                                }
+                                if ((from!=-1)&&(to!=-1)){
+                                    Quests.getInstance().showRange(from, to);
+                                    PostgreSQL.getInstance().shutdown();
+                                }
+                            }
+                            else
+                                throwHelpMessage();
+                        }else
+                            throwHelpMessage();
+        } catch (IndexOutOfBoundsException e) {
+            throwHelpMessage();
+        }
 //        Quests.getInstance().getData("Россия");
 //        Quests.getInstance().showData();
 //        Quests.getInstance().saveData();
